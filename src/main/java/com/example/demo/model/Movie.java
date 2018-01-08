@@ -1,0 +1,31 @@
+package com.example.demo.model;
+
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+import java.util.List;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(indexName = "movie-store", type = "movie")
+public class Movie {
+
+    @Id
+    private Long id;
+
+    private String name;
+
+    @Field(type = FieldType.Nested)
+    private List<Genre> genre;
+
+    private Double rating;
+
+    @Field(type = FieldType.Nested)
+    private Director director;
+}
